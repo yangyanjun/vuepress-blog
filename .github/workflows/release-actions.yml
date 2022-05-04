@@ -1,0 +1,15 @@
+name: Build and Deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: vuepress-deploy
+      uses: yangyanjun/vuepress-blog@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        TARGET_REPO: yangyanjun/yangyanjun.github.io
+        TARGET_BRANCH: master
+        BUILD_SCRIPT: yarn && yarn docs:build
+        BUILD_DIR: docs/.vuepress/dist/
